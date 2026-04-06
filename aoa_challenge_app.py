@@ -788,6 +788,17 @@ def draw_system_model():
 # ============================================================================
 
 def main():
+    # ---- google analytics ---------------------------------------------------------------
+    st.markdown("""
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGLR59CSQZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XGLR59CSQZ');
+    </script>
+    """, unsafe_allow_html=True)
 
     # ---- Load ---------------------------------------------------------------
     try:
@@ -1006,7 +1017,7 @@ def main():
             f'<div class="interval-warning">'
             f'<strong>Your angle θ̂ = {theta_hat:.2f}° is inside the acceptance '
             f'interval [{target["interval_lo"]:.4f}°, {target["interval_hi"]:.4f}°].</strong><br>'
-            f'If you pass with this angle, it is <strong>not a real spoof</strong> — '
+            f'If you pass with this angle, it is <strong>not a real spoof</strong>, '
             f'you are simply at the legitimate user\'s location. '
             f'A genuine impersonation attack requires θ̂ to be <strong>outside</strong> '
             f'the interval. Try to pass from outside!'
