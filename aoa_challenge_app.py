@@ -42,7 +42,7 @@ st.markdown("""
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 20px;
         color: #7ecfff;
-        font-size: 50px;
+        font-size: 40px;
         letter-spacing: 2px;
         text-transform: uppercase;
         padding: 5px 18px;
@@ -50,7 +50,7 @@ st.markdown("""
     }
 
     .hero-title {
-        font-size: 3.2rem;
+        font-size: 2rem;
         font-weight: 800;
         color: #ffffff;
         letter-spacing: -1px;
@@ -59,7 +59,7 @@ st.markdown("""
     }
     .hero-title span { color: #38bdf8; }
     .hero-sub {
-        font-size: 1.8rem;
+        font-size: 1.35rem;
         color: #94a3b8;
         # max-width: 1500px;
         margin: 0 auto 28px auto;
@@ -92,7 +92,7 @@ st.markdown("""
         
     }
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
         color: #e2e8f0;
         margin-bottom: 10px;
@@ -417,7 +417,7 @@ def angle_slider_with_highlight(lo, hi, key="theta_hat"):
     f'<p style="font-size:16px; color:#94a3b8; line-height:1.6;">'
     f'The green band marks the acceptance interval '
     f'[{lo:.4f}°, {hi:.4f}°]. '
-    f'Passing from inside this zone is not a real spoof - '
+    f'Passing from inside this zone is not a real spoof, '
     f'you would simply be at the legitimate user\'s location. '
     f'A genuine attack must come from the red challenge zones.'
     f'</p>',
@@ -883,7 +883,7 @@ def main():
     error for each datapoint. Finally, the maximum error is used as the acceptance interval to garanty that any AoA estimate 
     stays within the interval. The maximum error here is E = ±{margin:.4f}°. <br>
     - Finally, Proposition 1 can be rewritten as follows: An adversary at angle θ̂  cannot impersonate a legitimate transmitter at angle θ, regardless of any complex 
-    precoding, as long as θ̂  ∉ I = [GT. + E, MUSIC est. - E].<br>
+    precoding, as long as θ̂  ∉ I = GT + E.<br>
     The datapoints are fully public, the attacker knows all of them in the table below. The table contains the selected way, the point index, 
     the ground-truth AoA (°), the MUSIC estimated AoA (°), the error (°), the low and high bounds of the acceptance interval (°).
     </p>
@@ -943,7 +943,7 @@ def main():
     # SECTION 2 — ATTACK
     # =========================================================================
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">2 · Attack — Try to Impersonate a Target Point</div>',
+    st.markdown('<div class="section-title">Attack: Try to Impersonate a Target Point</div>',
                 unsafe_allow_html=True)
     st.markdown("""
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
