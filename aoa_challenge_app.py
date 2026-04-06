@@ -828,7 +828,7 @@ def main():
     # SECTION 1 — Subsampling of the original dataset
     # =========================================================================
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Subset of the Original Dataset</div>',
+    st.markdown('<div class="section-title">Subset of the original dataset</div>',
                 unsafe_allow_html=True)
     st.markdown(f""" 
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
@@ -836,7 +836,7 @@ def main():
     which comprises 251 ways and 251 points per way. The subsampling is performed by retaining a single point per way, selecting every 
     10th way (w0, w10, w20, ..., w250), and always picking the point located at the farthest distance from the antenna array.
     This last criterion follows from the snake structure of the measurement grid: the farthest point alternates between index 250 for
-    even-numbered ways and index 0 for odd-numbered ways. The resulting 26 points are physically separated by 50~mm from one another,
+    even-numbered ways and index 0 for odd-numbered ways. The resulting 26 points are physically separated by 50 mm from one another,
     all lying along the same far. This selection is motivated by two properties: first, the uniform spatial separation ensures that the 
     26 reference AoA values are well-spread and geometrically distinct, eliminating any angular ambiguity in the authentication process; 
     second, operating at maximum distance from the array places all points in a consistent far-field regime, where AoA estimation via MUSIC 
@@ -850,7 +850,8 @@ def main():
     st.markdown(f""" 
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
     The system model is illustrated in the figure below. The reference coordinate system is centered at the midpoint of the ULA, which comprises 
-    64 antenna elements arranged with 0.87 half-wavelength inter-element spacing at a carrier frequency of 2.61~GHz and 100 subcarriers. The 26 selected reference points
+    64 antenna elements arranged with 0.87 half-wavelength inter-element spacing at a carrier frequency of 2.61 GHz and 100 subcarriers. 
+    The 26 selected reference points
     are positioned along the far line. All reference positions lie to the left of the array center,resulting in strictly negative ground-truth AoA 
     values. 
     For each reference point, the AoA θ is defined as the angle between the incoming wavefront and the broadside 
@@ -871,7 +872,7 @@ def main():
     # SECTION 2 — PROFILE
     # =========================================================================
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Legitimate Profile</div>',
+    st.markdown('<div class="section-title">Legitimate profile</div>',
                 unsafe_allow_html=True)
     st.markdown(f"""
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
@@ -943,7 +944,7 @@ def main():
     # SECTION 2 — ATTACK
     # =========================================================================
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Attack: Try to Impersonate a Target Point</div>',
+    st.markdown('<div class="section-title">Attack: Try to impersonate a target point</div>',
                 unsafe_allow_html=True)
     st.markdown("""
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
