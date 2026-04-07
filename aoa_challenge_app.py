@@ -600,12 +600,12 @@ def draw_dataset_structure():
             color=AMBER, linewidth=0.8, linestyle='--', alpha=0.4)
 
     # 50mm annotation
-    y0, y1 = y_top, y_top - y_step
-    ax.annotate('', xy=(x_right + 0.5, y1),
-                xytext=(x_right + 0.5, y0),
-                arrowprops=dict(arrowstyle='<->', color='#BA7517', lw=0.8))
-    ax.text(x_right + 0.65, (y0 + y1) / 2, "50 mm",
-            color=AMBER, fontsize=8.5, va='center')
+    # y0, y1 = y_top, y_top - y_step
+    # ax.annotate('', xy=(x_right + 0.5, y1),
+    #             xytext=(x_right + 0.5, y0),
+    #             arrowprops=dict(arrowstyle='<->', color='#FFFFFF', lw=0.8))
+    # ax.text(x_right + 0.65, (y0 + y1) / 2, "50 mm",
+    #         color=AMBER, fontsize=8.5, va='center')
 
     # Axis labels
     # ax.text(5.0, -0.2, "Points  (pt 0 → pt 250)",
@@ -671,7 +671,7 @@ def draw_system_model():
     ax.axis('off')
 
     # ── Coordinates (in data units) ──────────────────────────────────────────
-    ula_x, ula_y   = 10.5, 0.5          # ULA center
+    ula_x, ula_y   = 11.5, 0.5          # ULA center
     far_y          = 4.5                # far line y
     pts_x          = [i * 0.42 + 0.3 for i in range(26)]   # 26 points, left side
 
@@ -843,12 +843,12 @@ def main():
                 unsafe_allow_html=True)
     st.markdown(f""" 
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
-    In this challenge, we consider a subset of 26 data points extracted from a chunk of the original dataset corresponding,
-    which comprises 251 ways and 251 points per way. The subsampling is performed by retaining a single point per way, selecting every 
-    10th way (w0, w10, w20, ..., w250), and always picking the point located at the farthest distance from the antenna array.
+    In this challenge, we consider a subset of 26 data points extracted from a chunk of the original dataset,
+    which comprises 251 ways and 251 datapoints per way. The subsampling is performed by retaining a single datapoint per way, selecting every 
+    10th way (w0, w10, w20, ..., w250), and always picking the datapoint located at the farthest distance from the antenna array.
     This last criterion follows from the snake structure of the measurement grid: the farthest point alternates between index 250 for
     even-numbered ways and index 0 for odd-numbered ways. The resulting 26 points are physically separated by 50 mm from one another,
-    all lying along the same far. This selection is motivated by two properties: first, the uniform spatial separation ensures that the 
+    all lying along the same line. This selection is motivated by two properties: first, the uniform spatial separation ensures that the 
     26 reference AoA values are well-spread and geometrically distinct, eliminating any angular ambiguity in the authentication process; 
     second, operating at maximum distance from the array places all points in a consistent far-field regime, where AoA estimation via MUSIC 
     is most accurate and reliable. The figure below illustrates the selection process.
@@ -863,10 +863,10 @@ def main():
     The system model is illustrated in the figure below. The reference coordinate system is centered at the midpoint of the ULA, which comprises 
     64 antenna elements arranged with 0.87 half-wavelength inter-element spacing at a carrier frequency of 2.61 GHz and 100 subcarriers. 
     The 26 selected reference points
-    are positioned along the far line. All reference positions lie to the left of the array center,resulting in strictly negative ground-truth AoA 
+    are positioned along the far line. All reference positions lie to the left of the array center, resulting in strictly negative ground-truth AoA 
     values. 
     For each reference point, the AoA θ is defined as the angle between the incoming wavefront and the broadside 
-    direction of the array, and is estimated at the base station receiver using the MUSIC algorithm. 
+    direction of the array, and is estimated at the ULA using the MUSIC algorithm. 
     </p>
     """, unsafe_allow_html=True) 
     st.latex(r"\mathbf{H} \in \mathbb{C}^{64 \times 100}")
@@ -889,10 +889,10 @@ def main():
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
     The AoAs are estimated as follows:<br>
     - We first compute the ground-truth AoA (GT) of each datapoint using the given ground-truth cordinates.<br>
-    - Knowing that original collected data is not pure due to hardware impairments, we calibrated the datapoints for
+    - Knowing that the original collected data is not pure due to hardware impairments, we calibrated the datapoints for
     impairments mitigation.<br>
     - After calibration, we estimatte AoAs using MUSIC (θ) and using the GT AoAs as reference, we compute the estimation
-    error for each datapoint. Finally, the maximum error is used as the acceptance interval to garanty that any AoA estimate 
+    error for each datapoint. Finally, the maximum error is used as the acceptance interval to ensure that any AoA estimate 
     stays within the interval. The maximum error here is E = ±{margin:.4f}°. <br>
     - Finally, Proposition 1 can be rewritten as follows: An adversary at angle θ̂  cannot impersonate a legitimate transmitter at angle θ, regardless of any complex 
     precoding, as long as θ̂  ∉ I = GT + E.<br>
@@ -960,7 +960,7 @@ def main():
     st.markdown("""
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
     Select any datapoint. You know its ground-truth AoA and acceptance interval I. Choose your physical angle θ̂  ∉ I and any complex 
-    precoding scalar q (a complex scalar will be represented by its modulus |q|, and phase). The MUSIC estimator will output your true angle.  
+    precoding scalar q (a complex scalar will be represented by its modulus |q| and its phase ∠𝑞). The MUSIC estimator will output your true angle.  
     Can you make it output an angle in the acceptance interval I?
     </p>
     """, unsafe_allow_html=True)
