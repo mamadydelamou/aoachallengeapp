@@ -788,7 +788,7 @@ def draw_system_model():
 # ============================================================================
 
 def main():
-    # ---- google analytics ---------------------------------------------------------------
+    # -----google analytics---------------------------------------------------------------
     st.markdown("""
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGLR59CSQZ"></script>
@@ -827,7 +827,7 @@ def main():
         <div class="hero-tag">Robust-6G · Security Challenge</div>
         <div class="hero-title">AoA Impersonation Challenge</div>
         <div class="hero-sub">
-            This challenge demonstrates <strong style="color:#7dd3fc">Proposition 1</strong> of the work proposed in 
+            This challenge demonstrates <strong style="color:#7dd3fc">Proposition 1</strong> of the work proposed 
             <a href="https://arxiv.org/pdf/2503.11508.pdf"> Here</a>.
             An adversary at angle θ̂  cannot impersonate a legitimate transmitter at angle θ, regardless of any complex 
             precoding, as long as θ̂ ≠ θ.
