@@ -1058,7 +1058,8 @@ def main():
     q        = q_amp * np.exp(1j * np.radians(q_phase))
     H_attack = q * build_steering_channel(theta_hat, n_ant, n_sub)
     st.markdown(
-        f"**Submitted:** `H = q · a(θ̂)`  with  "
+        f"**Submitted:** Ĥ = q · â(θ̂ ) with  "   
+
         f"|q| = {q_amp:.2f},  ∠q = {q_phase:.0f}°,  θ̂ = {theta_hat:.1f}°"
     )
     if st.button("Submit attack", type="primary"):
