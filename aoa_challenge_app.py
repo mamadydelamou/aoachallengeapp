@@ -1007,7 +1007,7 @@ def main():
                                 key="theta_hat")
     theta_hat = st.session_state.get("theta_hat", None)
     if theta_hat is None:
-        st.info("Please enter an angle above to continue.")
+        st.info("") #Please enter an angle above to continue.
         st.stop()
 
     # Warning if inside interval
