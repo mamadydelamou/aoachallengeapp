@@ -234,7 +234,19 @@ li[role="option"] {
     margin: 0 auto !important;
 }
 
-
+.visitor-counter {
+    position: fixed;
+    top: 65px;
+    right: 20px;
+    background: rgba(56,189,248,0.12);
+    border: 1px solid rgba(56,189,248,0.35);
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 5px 14px;
+    font-weight: 500;
+    z-index: 9999;
+}
 
 
 
@@ -836,13 +848,11 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-
-    # ── Visitor counter ───────────────────────────────────────────────────────
     if "visited" not in st.session_state:
         st.session_state.visited = True
         try:
             r = requests.get(
-                "https://api.countapi.xyz/hit/mamadydelamou/aoa-challenge",
+                "https://countapi.mileshilliard.com/api/v1/hit/aoa-challenge-mamady",
                 timeout=2
             )
             count = r.json().get("value", 0)
@@ -853,22 +863,10 @@ def main():
     count = st.session_state.get("visit_count", None)
     if count:
         st.markdown(
-            f"""
-            <div style="text-align:center; margin-top:-20px; margin-bottom:20px;">
-                <span style="
-                    background: rgba(56,189,248,0.12);
-                    border: 1px solid rgba(56,189,248,0.35);
-                    border-radius: 20px;
-                    color: #7dd3fc;
-                    font-size: 15px;
-                    padding: 6px 20px;
-                    font-weight: 500;">
-                    {count} visitors
-                </span>
-            </div>
-            """,
+            f'<div class="visitor-counter">Visitors: {count}</div>',
             unsafe_allow_html=True
         )
+    
 
     # =========================================================================
     # SECTION 1 — Subsampling of the original dataset
