@@ -995,8 +995,8 @@ def main():
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
     You are physically at angle θ̂ and apply a complex scalar q to your 
     transmitted signal. Your channel seen by the receiver is:  
-    H_attack = q · a(θ̂)  
-    where a(θ̂) is the steering vector at your true angle.  
+    H_attack = q · â(θ̂)  
+    where â(θ̂) is the steering vector at your true angle.  
     The theory proves MUSIC will always output θ̂ regardless of q.
     </p>
     """, unsafe_allow_html=True)
