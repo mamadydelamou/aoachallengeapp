@@ -11,7 +11,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pandas as pd
-import requests
+
 
 # ============================================================================
 # PAGE CONFIG
@@ -232,20 +232,6 @@ li[role="option"] {
     padding-right: clamp(1rem, 4vw, 4rem) !important;
     padding-top: 1rem !important;
     margin: 0 auto !important;
-}
-
-.visitor-counter {
-    position: fixed;
-    top: 65px;
-    right: 20px;
-    background: rgba(56,189,248,0.12);
-    border: 1px solid rgba(56,189,248,0.35);
-    border-radius: 20px;
-    color: #FFFFFF;
-    font-size: 13px;
-    padding: 5px 14px;
-    font-weight: 500;
-    z-index: 9999;
 }
 
 
@@ -848,24 +834,6 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    if "visited" not in st.session_state:
-        st.session_state.visited = True
-        try:
-            r = requests.get(
-                "https://countapi.mileshilliard.com/api/v1/hit/aoa-challenge-mamady",
-                timeout=2
-            )
-            count = r.json().get("value", 0)
-            st.session_state.visit_count = count
-        except:
-            st.session_state.visit_count = None
-
-    count = st.session_state.get("visit_count", None)
-    if count:
-        st.markdown(
-            f'<div class="visitor-counter">Visitors: {count}</div>',
-            unsafe_allow_html=True
-        )
     
 
     # =========================================================================
