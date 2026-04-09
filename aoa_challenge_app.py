@@ -960,7 +960,7 @@ def main():
     st.markdown("""
     <p style="font-size:20px; line-height:1.8; color:#cbd5e1; text-align: justify;">
     Select any datapoint. You know its ground-truth AoA and acceptance interval I. Choose your physical angle θ̂  ∉ I and any complex 
-    precoding scalar q (a complex scalar will be represented by its modulus |q| and its phase ∠𝑞). The MUSIC estimator will output your true angle.  
+    precoding scalar q (a complex scalar will be represented by its modulus |q| and its phase ∠q). The MUSIC estimator will output your true angle.  
     Can you make it output an angle in the acceptance interval I?
     </p>
     """, unsafe_allow_html=True)
