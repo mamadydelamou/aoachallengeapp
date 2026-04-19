@@ -481,45 +481,83 @@ def run_and_display_attack(H_submitted, cal, target, theta_hat):
             unsafe_allow_html=True
         )
 
-    # MUSIC spectrum
-    fig, ax = plt.subplots(figsize=(13, 5))
-    fig.patch.set_facecolor("#0d1b2e")
-    ax.set_facecolor("#0d1b2e")
+    # # MUSIC spectrum
+    # fig, ax = plt.subplots(figsize=(13, 5))
+    # fig.patch.set_facecolor("#0d1b2e")
+    # ax.set_facecolor("#0d1b2e")
 
+    # legit_norm = target['spec'] / target['spec'].max()
+    # atk_norm   = atk_spec / atk_spec.max()
+
+    # ax.plot(target['angles'], 10*np.log10(legit_norm + 1e-12),
+    #         color='#38bdf8', lw=2.5, label='Legitimate user MUSIC spectrum')
+    # ax.plot(angles, 10*np.log10(atk_norm + 1e-12),
+    #         color='#f87171', lw=2.5, linestyle='--',
+    #         label=f'Attacker spectrum  (θ̂ = {theta_hat:.1f}°)')
+
+    # ax.axvline(target['gt_aoa'], color='#38bdf8', lw=1.5, linestyle=':',
+    #            label=f"Target GT AoA = {target['gt_aoa']:.4f}°")
+    # ax.axvline(est_aoa, color='#f87171', lw=1.5, linestyle=':',
+    #            label=f"Attacker MUSIC peak = {est_aoa:.4f}°")
+    # ax.axvline(theta_hat, color='#fbbf24', lw=1.5, linestyle='-.',
+    #            label=f"True attacker angle θ̂ = {theta_hat:.1f}°")
+    # ax.axvspan(target['interval_lo'], target['interval_hi'],
+    #            alpha=0.18, color='#22c55e',
+    #            label=f"Acceptance interval [{target['interval_lo']:.4f}°, "
+    #                  f"{target['interval_hi']:.4f}°]")
+
+    # center = target['gt_aoa']
+    # ax.set_xlim(- 90, + 90)
+    # ax.set_xlabel("Angle (°)", fontsize=13, color="#94a3b8")
+    # ax.set_ylabel("Normalized power (dB)", fontsize=13, color="#94a3b8")
+    # ax.set_title("MUSIC Pseudo-Spectrum: Legitimate vs Attacker",
+    #              fontsize=14, color="#e2e8f0")
+    # ax.tick_params(colors="#94a3b8", labelsize=11)
+    # for spine in ax.spines.values():
+    #     spine.set_edgecolor("#334155")
+    # ax.legend(fontsize=10, facecolor="#1e3a5f",
+    #           labelcolor="#e2e8f0", edgecolor="#334155")
+    # ax.grid(alpha=0.15, color="#334155")
+    # st.pyplot(fig)
+    # plt.close()
+
+# MUSIC spectrum
+    fig, ax = plt.subplots(figsize=(13, 5))
+    fig.patch.set_facecolor("#ffffff")
+    ax.set_facecolor("#ffffff")
     legit_norm = target['spec'] / target['spec'].max()
     atk_norm   = atk_spec / atk_spec.max()
 
     ax.plot(target['angles'], 10*np.log10(legit_norm + 1e-12),
-            color='#38bdf8', lw=2.5, label='Legitimate user MUSIC spectrum')
+            color='#1d4ed8', lw=2.5, label='Legitimate user MUSIC spectrum')
     ax.plot(angles, 10*np.log10(atk_norm + 1e-12),
-            color='#f87171', lw=2.5, linestyle='--',
+            color='#dc2626', lw=2.5, linestyle='--',
             label=f'Attacker spectrum  (θ̂ = {theta_hat:.1f}°)')
-
-    ax.axvline(target['gt_aoa'], color='#38bdf8', lw=1.5, linestyle=':',
+    ax.axvline(target['gt_aoa'], color='#1d4ed8', lw=1.5, linestyle=':',
                label=f"Target GT AoA = {target['gt_aoa']:.4f}°")
-    ax.axvline(est_aoa, color='#f87171', lw=1.5, linestyle=':',
+    ax.axvline(est_aoa, color='#dc2626', lw=1.5, linestyle=':',
                label=f"Attacker MUSIC peak = {est_aoa:.4f}°")
-    ax.axvline(theta_hat, color='#fbbf24', lw=1.5, linestyle='-.',
+    ax.axvline(theta_hat, color='#d97706', lw=1.5, linestyle='-.',
                label=f"True attacker angle θ̂ = {theta_hat:.1f}°")
     ax.axvspan(target['interval_lo'], target['interval_hi'],
-               alpha=0.18, color='#22c55e',
+               alpha=0.15, color='#15803d',
                label=f"Acceptance interval [{target['interval_lo']:.4f}°, "
                      f"{target['interval_hi']:.4f}°]")
 
-    center = target['gt_aoa']
-    ax.set_xlim(- 90, + 90)
-    ax.set_xlabel("Angle (°)", fontsize=13, color="#94a3b8")
-    ax.set_ylabel("Normalized power (dB)", fontsize=13, color="#94a3b8")
+    ax.set_xlim(-90, +90)
+    ax.set_xlabel("Angle (°)", fontsize=13, color="#000000")
+    ax.set_ylabel("Normalized power (dB)", fontsize=13, color="#000000")
     ax.set_title("MUSIC Pseudo-Spectrum: Legitimate vs Attacker",
-                 fontsize=14, color="#e2e8f0")
-    ax.tick_params(colors="#94a3b8", labelsize=11)
+                 fontsize=14, color="#000000")
+    ax.tick_params(colors="#000000", labelsize=11)
     for spine in ax.spines.values():
-        spine.set_edgecolor("#334155")
-    ax.legend(fontsize=10, facecolor="#1e3a5f",
-              labelcolor="#e2e8f0", edgecolor="#334155")
-    ax.grid(alpha=0.15, color="#334155")
+        spine.set_edgecolor("#94a3b8")
+    ax.legend(fontsize=10, facecolor="#f1f5f9",
+              labelcolor="#000000", edgecolor="#cbd5e1")
+    ax.grid(alpha=0.3, color="#e2e8f0")
     st.pyplot(fig)
     plt.close()
+
 
 # ============================================================================
 # SYSTEM MODEL DIAGRAM
@@ -527,18 +565,16 @@ def run_and_display_attack(H_submitted, cal, target, theta_hat):
 def draw_dataset_structure():
     import matplotlib.patches as mpatches
 
-    BG    = "#0d1b2e"
-    AMBER = "#EF9F27"
-    WHITE = "#e2e8f0"
-    MUTED = "#475569"
-    DIM   = "#334155"
-    SEC   = "#64748b"
+    BG    = "#ffffff"
+    AMBER = "#000000"
+    WHITE = "#000000"
+    MUTED = "#000000"
+    DIM   = "#000000"
+    SEC   = "#000000"
 
     fig, ax = plt.subplots(figsize=(10, 4))
     fig.patch.set_facecolor(BG)
     ax.set_facecolor(BG)
-    # ax.set_xlim(0, 10)
-    # ax.set_ylim(0, 9)
     ax.axis('off')
 
     x_left, x_right = 1.5, 8.5
@@ -551,14 +587,14 @@ def draw_dataset_structure():
         y = y_top - i * y_step
         ax.annotate('', xy=(x_right - 0.1, y),
                     xytext=(x_left, y),
-                    arrowprops=dict(arrowstyle='->', color=WHITE, lw=1.2))
-        ax.text(x_left - 0.15, y, f"w{w}",
+                    arrowprops=dict(arrowstyle='->', color='#1e293b', lw=1.2))
+        ax.text(x_left - 0.15, y, f"$w_{{{w}}}$",
                 ha='right', va='center', color=WHITE, fontsize=9)
         ax.text((x_left + x_right) / 2, y + 0.1,
                 "pt 0 → pt 250",
                 ha='center', va='bottom', color=SEC, fontsize=8)
         ax.plot(x_right, y, 'o', color=AMBER, markersize=9,
-                markeredgecolor='#BA7517', markeredgewidth=1.2)
+                markeredgecolor='#92400e', markeredgewidth=1.2)
 
     # Odd ways — right to left, not selected
     for i, w in enumerate(odd_ways):
@@ -567,9 +603,9 @@ def draw_dataset_structure():
                     xytext=(x_right, y),
                     arrowprops=dict(arrowstyle='->', color=DIM,
                                    lw=0.8, linestyle='dashed'))
-        ax.text(x_left - 0.15, y, f"w{w}",
+        ax.text(x_left - 0.15, y, f"$w_{{{w}}}$",
                 ha='right', va='center', color=MUTED, fontsize=8.5)
-        ax.text((x_left + x_right) / 2, y +0.15,
+        ax.text((x_left + x_right) / 2, y + 0.15,
                 "pt 250 --> pt 0",
                 ha='center', va='top', color=DIM, fontsize=8)
         ax.plot(x_left, y, 'o', color=DIM, markersize=5,
@@ -585,14 +621,14 @@ def draw_dataset_structure():
     y_bot = 5.5
     ax.annotate('', xy=(x_right - 0.1, y_bot),
                 xytext=(x_left, y_bot),
-                arrowprops=dict(arrowstyle='->', color=WHITE, lw=1.2))
-    ax.text(x_left - 0.15, y_bot, "w250",
+                arrowprops=dict(arrowstyle='->', color='#1e293b', lw=1.2))
+    ax.text(x_left - 0.15, y_bot, f"$w_{{250}}$",
             ha='right', va='center', color=WHITE, fontsize=9)
     ax.text((x_left + x_right) / 2, y_bot + 0.18,
             "pt 0 → pt 250",
             ha='center', va='bottom', color=SEC, fontsize=8)
     ax.plot(x_right, y_bot, 'o', color=AMBER, markersize=9,
-            markeredgecolor='#BA7517', markeredgewidth=1.2)
+            markeredgecolor='#92400e', markeredgewidth=1.2)
 
     # Vertical connector — selected points
     ax.plot([x_right, x_right], [y_bot, y_top],
@@ -621,11 +657,11 @@ def draw_dataset_structure():
     lx, ly = 3.5, 4.2
     leg = mpatches.FancyBboxPatch((lx, ly), 2.3, 1,
                                    boxstyle="round,pad=0.1",
-                                   facecolor='#0f2744',
-                                   edgecolor=DIM, linewidth=0.5)
+                                   facecolor='#f1f5f9',
+                                   edgecolor='#cbd5e1', linewidth=0.5)
     ax.add_patch(leg)
     ax.plot(lx + 0.3, ly + 0.9, 'o', color=AMBER, markersize=7,
-            markeredgecolor='#BA7517', markeredgewidth=1.0)
+            markeredgecolor='#92400e', markeredgewidth=1.0)
     ax.text(lx + 0.55, ly + 0.9, "Selected far-point (×26)",
             color=WHITE, fontsize=8.5, va='center')
     ax.plot(lx + 0.3, ly + 0.5, 'o', color=DIM, markersize=5,
@@ -634,7 +670,7 @@ def draw_dataset_structure():
             color=WHITE, fontsize=8.5, va='center')
     ax.plot([lx + 0.18, lx + 0.45], [ly + 0.1, ly + 0.1],
             color=DIM, linewidth=0.8, linestyle='--')
-    ax.text(lx + 0.55, ly+0.1 , "Odd way (reversed direction)",
+    ax.text(lx + 0.55, ly + 0.1, "Odd way (reversed direction)",
             color=WHITE, fontsize=8.5, va='center')
 
     # ax.set_title(
@@ -647,19 +683,27 @@ def draw_dataset_structure():
     plt.tight_layout(pad=0.4)
     return fig
 
+
+
+
+
+
+
+
 def draw_system_model():
     """
     Matplotlib system model: ULA (right) + 26 far-points (all left → θ < 0).
-    Dark background matching the app theme.
+    White background.
     """
-    BG    = "#0d1b2e"
-    BLUE  = "#378ADD"
-    AMBER = "#EF9F27"
-    GREEN = "#1D9E75"
-    MUTED = "#94a3b8"
-    WHITE = "#e2e8f0"
+    BG    = "#ffffff"
+    BLUE  = "#000000"
+    AMBER = "#000000"
+    GREEN = "#000000"
+    MUTED = "#000000"
+    WHITE = "#000000"
 
     import matplotlib.patches as mpatches
+    # plt.rcParams['text.usetex'] = False  # default, mathtext is used instead
 
     fig, ax = plt.subplots(figsize=(10, 5.5))
     fig.patch.set_facecolor(BG)
@@ -670,24 +714,24 @@ def draw_system_model():
     ax.axis('off')
 
     # ── Coordinates (in data units) ──────────────────────────────────────────
-    ula_x, ula_y   = 11.5, 0.5          # ULA center
-    far_y          = 4.5                # far line y
-    pts_x          = [i * 0.42 + 0.3 for i in range(26)]   # 26 points, left side
+    ula_x, ula_y   = 11.5, 0.5
+    far_y          = 4.5
+    pts_x          = [i * 0.42 + 0.3 for i in range(26)]
 
     # ── Room outline ─────────────────────────────────────────────────────────
     room = mpatches.Polygon([[0.1,0.1],[12.9,0.1],[12.9,5.4],[0.1,5.4]],
                        closed=True, fill=False,
-                       edgecolor='#334155', linewidth=0.6, linestyle='--')
+                       edgecolor='#94a3b8', linewidth=0.6, linestyle='--')
     ax.add_patch(room)
-    ax.text(0.25, 5.15, "Lab room", color='#475569', fontsize=9)
+    ax.text(0.25, 5.15, "Lab room", color='#000000', fontsize=9)
 
     # ── ULA bar ──────────────────────────────────────────────────────────────
     ula_bar = mpatches.FancyBboxPatch((ula_x - 1.2, ula_y - 0.18), 2.4, 0.36,
                                   boxstyle="round,pad=0.04",
-                                  facecolor='#0C447C', edgecolor=BLUE, linewidth=0.8)
+                                  facecolor='#dbeafe', edgecolor=BLUE, linewidth=0.8)
     ax.add_patch(ula_bar)
     ax.text(ula_x, ula_y, "ULA  (M antennas)",
-            ha='center', va='center', color='#B5D4F4', fontsize=10, fontweight='bold')
+            ha='center', va='center', color=BLUE, fontsize=10, fontweight='bold')
 
     # Antenna element ticks
     for dx in [-0.9, -0.6, -0.3, 0.0, 0.3, 0.6, 0.9]:
@@ -698,23 +742,23 @@ def draw_system_model():
 
     # Broadside (vertical dashed reference)
     ax.plot([ula_x, ula_x], [ula_y + 0.38, ula_y + 1.2],
-            color='#334155', linewidth=0.6, linestyle='--')
+            color='#94a3b8', linewidth=0.6, linestyle='--')
 
     # ── Far line ─────────────────────────────────────────────────────────────
     ax.plot([0.2, pts_x[-1] + 0.2], [far_y, far_y],
-            color='#334155', linewidth=0.5, linestyle='--')
+            color='#94a3b8', linewidth=0.5, linestyle='--')
     ax.text(pts_x[-1] + 0.28, far_y, "far line",
-            color='#475569', fontsize=8.5, va='center')
+            color='#000000', fontsize=8.5, va='center')
 
     # ── 26 amber data points ──────────────────────────────────────────────────
     for px in pts_x:
         ax.plot(px, far_y, 'o', color=AMBER,
-                markersize=7, markeredgecolor='#BA7517', markeredgewidth=0.5)
+                markersize=7, markeredgecolor='#92400e', markeredgewidth=0.5)
 
     # Point labels
-    ax.text(pts_x[0],  far_y + 0.28, "w0",   ha='center', color=AMBER, fontsize=8.5)
-    ax.text(pts_x[1],  far_y + 0.28, "w10",  ha='center', color=AMBER, fontsize=8.5)
-    ax.text(pts_x[-1], far_y + 0.28, "w250", ha='center', color=AMBER, fontsize=8.5)
+    ax.text(pts_x[0],  far_y + 0.28, f"$w_{{0}}$",   ha='center', color=AMBER, fontsize=8.5)
+    ax.text(pts_x[1],  far_y + 0.28,  f"$w_{{10}}$",  ha='center', color=AMBER, fontsize=8.5)
+    ax.text(pts_x[-1], far_y + 0.28,  f"$w_{{250}}$", ha='center', color=AMBER, fontsize=8.5)
 
     # 50mm spacing annotation
     ax.annotate('', xy=(pts_x[1], far_y - 0.32), xytext=(pts_x[0], far_y - 0.32),
@@ -734,31 +778,31 @@ def draw_system_model():
                         color=GREEN, linewidth=1.0)
     ax.add_patch(arc)
     ax.text(ula_x - 0.85, ula_y + 0.85, "θ < 0",
-            color='#5DCAA5', fontsize=9.5)
+            color=GREEN, fontsize=9.5)
 
     # Ray labels
     ax.text((ula_x + pts_x[0])/2  - 0.3, (ula_y + far_y)/2,
-            "θ0",  color='#5DCAA5', fontsize=10, ha='center')
+             f"$θ_{{0}}$",  color=GREEN, fontsize=10, ha='center')
     ax.text((ula_x + pts_x[12])/2 + 0.3, (ula_y + far_y)/2,
-            "θ12", color='#5DCAA5', fontsize=10, ha='center')
+            f"$θ_{{12}}$", color=GREEN, fontsize=10, ha='center')
     ax.text((ula_x + pts_x[25])/2 + 0.3, (ula_y + far_y)/2 + 0.3,
-            "θ25", color='#5DCAA5', fontsize=10, ha='center')
+            f"$θ_{{25}}$", color=GREEN, fontsize=10, ha='center')
 
     # ── Distance annotation (right side) ─────────────────────────────────────
     ax.annotate('', xy=(12.5, far_y), xytext=(12.5, ula_y + 0.18),
-                arrowprops=dict(arrowstyle='<->', color='#475569', lw=0.7))
+                arrowprops=dict(arrowstyle='<->', color='#000000', lw=0.7))
     ax.text(12.65, (far_y + ula_y)/2, "max\ndist.",
-            color='#475569', fontsize=8.5, ha='left', va='center')
+            color='#000000', fontsize=8.5, ha='left', va='center')
 
     # ── Legend ───────────────────────────────────────────────────────────────
     lx, ly = 0.2, 1.0
     leg_box = mpatches.FancyBboxPatch((lx, ly), 3.2, 1.4,
                                   boxstyle="round,pad=0.1",
-                                  facecolor='#0f2744', edgecolor='#334155',
+                                  facecolor='#f1f5f9', edgecolor='#cbd5e1',
                                   linewidth=0.6)
     ax.add_patch(leg_box)
     ax.plot(lx + 0.25, ly + 1.05, 'o', color=AMBER, markersize=6,
-            markeredgecolor='#BA7517', markeredgewidth=0.5)
+            markeredgecolor='#92400e', markeredgewidth=0.5)
     ax.text(lx + 0.5, ly + 1.05, "Reference point (UE)",
             color=WHITE, fontsize=9, va='center')
     ax.plot([lx + 0.15, lx + 0.4], [ly + 0.7, ly + 0.7],
@@ -767,7 +811,7 @@ def draw_system_model():
             color=WHITE, fontsize=9, va='center')
     bar_patch = mpatches.FancyBboxPatch((lx + 0.12, ly + 0.28), 0.28, 0.18,
                                     boxstyle="round,pad=0.02",
-                                    facecolor='#0C447C', edgecolor=BLUE, linewidth=0.5)
+                                    facecolor='#dbeafe', edgecolor=BLUE, linewidth=0.5)
     ax.add_patch(bar_patch)
     ax.text(lx + 0.5, ly + 0.37, "ULA — Base Station",
             color=WHITE, fontsize=9, va='center')
@@ -776,7 +820,7 @@ def draw_system_model():
     ax.text(6.5, 0.12,
             "Data sampling step = 10  ·  point spacing = 50 mm  ·  "
             "all points left of array, θ < 0",
-            ha='center', color='#475569', fontsize=8.5)
+            ha='center', color='#000000', fontsize=8.5)
 
     plt.tight_layout(pad=0.3)
     return fig
@@ -921,33 +965,36 @@ def main():
     The figure below illustrates the the ground-truth, the estimated AoAs (MUSIC) of each datapoint, along with the acceptance interval ±{margin:.4f}°.
     </p>
     """, unsafe_allow_html=True)
+
+  
     fig, ax = plt.subplots(figsize=(13, 4))
-    fig.patch.set_facecolor("#0d1b2e")
-    ax.set_facecolor("#0d1b2e")
+    fig.patch.set_facecolor("#ffffff")
+    ax.set_facecolor("#ffffff")
     x   = np.arange(len(profile))
     gt  = [p['gt_aoa']      for p in profile]
     est = [p['est_aoa']     for p in profile]
     lo  = [p['interval_lo'] for p in profile]
     hi  = [p['interval_hi'] for p in profile]
 
-    ax.plot(x, gt,  'o-',  color='#38bdf8', lw=2,   ms=7, label='Ground Truth')
-    ax.plot(x, est, 's--', color='#fb923c', lw=1.5, ms=6, label='MUSIC estimate')
-    ax.fill_between(x, lo, hi, alpha=0.25, color='#22c55e',
+    ax.plot(x, gt,  'o-',  color='#1d4ed8', lw=2,   ms=7, label='Ground Truth')
+    ax.plot(x, est, 's--', color='#d97706', lw=1.5, ms=6, label='MUSIC estimate')
+    ax.fill_between(x, lo, hi, alpha=0.20, color='#15803d',
                     label=f'Acceptance interval ±{margin:.4f}°')
     ax.set_xticks(x)
-    ax.set_xticklabels([f"w{w}" for w in way_indices], rotation=45,
-                       fontsize=9, color="#94a3b8")
-    ax.set_ylabel("AoA (°)", fontsize=12, color="#94a3b8")
-    ax.set_title("26 far-points - Ground Truth vs MUSIC + acceptance intervals",
-                 fontsize=13, color="#e2e8f0")
-    ax.tick_params(colors="#94a3b8", labelsize=10)
+    ax.set_xticklabels([f"$w_{{{w}}}$" for w in way_indices], rotation=45,
+                       fontsize=9, color="#000000")
+    ax.set_ylabel("AoA (°)", fontsize=12, color="#000000")
+    ax.set_title("26 far-points — Ground Truth vs MUSIC + acceptance intervals",
+                 fontsize=13, color="#000000")
+    ax.tick_params(colors="#000000", labelsize=10)
     for spine in ax.spines.values():
-        spine.set_edgecolor("#334155")
-    ax.legend(fontsize=10, facecolor="#1e3a5f",
-              labelcolor="#e2e8f0", edgecolor="#334155")
-    ax.grid(alpha=0.15, color="#334155")
+        spine.set_edgecolor("#94a3b8")
+    ax.legend(fontsize=10, facecolor="#f1f5f9",
+              labelcolor="#000000", edgecolor="#cbd5e1")
+    ax.grid(alpha=0.3, color="#e2e8f0")
     st.pyplot(fig)
     plt.close()
+
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.divider()
